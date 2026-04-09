@@ -1,0 +1,40 @@
+# Android 빌드 산출물
+/build
+**/build/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# IntelliJ / Android Studio
+*.iml
+.idea/
+!.idea/codeStyles/
+!.idea/copyright/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/deploymentTargetDropDown.xml
+.idea/render.experimental.xml
+
+# 로컬 환경 설정 (공유 불필요)
+local.properties
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# 블로그 포스팅 초안
+blog_post_*.md
+
+# Claude Code 작업 디렉토리
+.claude/
