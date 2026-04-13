@@ -1,6 +1,5 @@
 plugins {
     id("com.dantariun.buildlogic.application")
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -18,10 +17,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-
-    buildFeatures {
-        compose = true
     }
 }
 
