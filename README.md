@@ -15,6 +15,9 @@ Android Clean Architecture + Multi-Module 학습 프로젝트
 | UI | Jetpack Compose + Material 3 |
 | Architecture | Clean Architecture + MVVM |
 | Build | Gradle Convention Plugins, Version Catalog |
+| Camera | CameraX 1.3.4 |
+| Face Detection | Google ML Kit Face Detection 16.1.7 |
+| Async | Kotlin Coroutines + Flow 1.8.1 |
 | Min SDK | 24 (Android 7.0) |
 | Target SDK | 36 (Android 16) |
 
@@ -85,24 +88,25 @@ plugins {
 
 ```
 ┌──────────────────────────────────────────────────┐
-│                      app                          │
-│          MainActivity · Theme · Navigation        │
+│                      app                         │
+│          MainActivity · Theme · Navigation       │
 └───────────────────────┬──────────────────────────┘
                         │
 ┌───────────────────────▼──────────────────────────┐
-│                  presentation                     │
-│           Composable · ViewModel · UiState        │
+│                  presentation                    │
+│           Composable · ViewModel · UiState       │
 └───────────────────────┬──────────────────────────┘
                         │
 ┌───────────────────────▼──────────────────────────┐
-│                    domain                         │
-│          UseCase · Entity · Repository (Interface)│
-└───────────┬───────────────────────────────────────┘
+│                    domain                        │
+│  DetectedFace · EyeState · HeadDirection · ...   │
+│  FaceDetectionRepository · ObserveFaceUseCase    │
+└───────────┬──────────────────────────────────────┘
             │
-┌───────────▼───────────────────────────────────────┐
-│                     data                          │
-│   Repository (Impl) · DataSource · DB · Network   │
-└───────────────────────────────────────────────────┘
+┌───────────▼──────────────────────────────────────┐
+│                     data                         │
+│   Repository (Impl) · DataSource · DB · Network  │
+└──────────────────────────────────────────────────┘
 ```
 
 ---
@@ -140,9 +144,10 @@ git clone https://github.com/dantariun/morphview.git
 | Convention Plugin (application · library · compose) | ✅ 완료 |
 | Version Catalog 중앙화 | ✅ 완료 |
 | app 기본 Compose + Material 3 테마 | ✅ 완료 |
-| presentation — ViewModel · Screen | 🔲 예정 |
-| domain — UseCase · Entity · Repository Interface | 🔲 예정 |
-| data — Repository 구현 · Room · Retrofit | 🔲 예정 |
+| domain — Entity · Repository Interface · UseCase | ✅ 완료 |
+| data — CameraX + ML Kit Repository 구현 | 🔲 예정 |
+| presentation — CameraX 프리뷰 · 얼굴 윤곽 오버레이 | 🔲 예정 |
+| presentation — 눈/입/방향 상태 UI 표시 | 🔲 예정 |
 | Hilt 의존성 주입 | 🔲 예정 |
 | Navigation | 🔲 예정 |
 
@@ -150,13 +155,15 @@ git clone https://github.com/dantariun/morphview.git
 
 ## 블로그 시리즈
 
-| 편                                                                                                                 | 내용 |
-|-------------------------------------------------------------------------------------------------------------------|---|
-| [1편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0)   | 클린 아키텍처 개념 · 기술 스택 결정 |
-| [2편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-2) | 3계층 구조 분석 (Presentation / Domain / Data) |
-| [3편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-3) | build-logic 분석 · Convention Plugin 필요성 |
-| [4편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-4) | build-logic 모듈 생성 · AGP / Kotlin 플러그인 연결 |
-| [5편](https://velog.io/@pepperkim/Android-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%A9%80%ED%8B%B0%EB%AA%A8%EB%93%88-%EC%A0%9C%EC%9E%91%EA%B8%B0-5%ED%8E%B8-Convention-Plugin-%EC%A7%81%EC%A0%91-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0)                                                                                                            | Convention Plugin 구현 · 각 모듈 적용|
+| 편                                                                                                                                                                                                                                                                | 내용 |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|
+| [1편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0)                                                                                                                                                  | 클린 아키텍처 개념 · 기술 스택 결정 |
+| [2편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-2)                                                                                                                                                | 3계층 구조 분석 (Presentation / Domain / Data) |
+| [3편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-3)                                                                                                                                                | build-logic 분석 · Convention Plugin 필요성 |
+| [4편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-4)                                                                                                                                                | build-logic 모듈 생성 · AGP / Kotlin 플러그인 연결 |
+| [5편](https://velog.io/@pepperkim/Android-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%A9%80%ED%8B%B0%EB%AA%A8%EB%93%88-%EC%A0%9C%EC%9E%91%EA%B8%B0-5%ED%8E%B8-Convention-Plugin-%EC%A7%81%EC%A0%91-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0) | Convention Plugin 구현 · 각 모듈 적용|
+| [6편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-6편-Convention-Plugin-끝까지-마무리하기) | Convention Plugin, 끝까지 마무리하기|
+| [7편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-7편-Domain-레이어-설계) | Domain 레이어 설계|
 
 ---
 

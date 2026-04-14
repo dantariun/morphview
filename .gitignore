@@ -6,28 +6,36 @@
 *.ap_
 *.dex
 
-# Gradle
+# Gradle 캐시
 .gradle/
-gradle-app.setting
-!gradle-wrapper.jar
+**/gradle-app.setting
+!gradle/wrapper/gradle-wrapper.jar
 .gradletasknamecache
 
 # IntelliJ / Android Studio
 *.iml
-.idea/
-!.idea/codeStyles/
-!.idea/copyright/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
 .idea/assetWizardSettings.xml
 .idea/dictionaries
 .idea/libraries
+.idea/caches/
+.idea/deploymentTargetSelector.xml
 .idea/deploymentTargetDropDown.xml
 .idea/render.experimental.xml
+.idea/kotlinc.xml
+.idea/migrations.xml
 
 # 로컬 환경 설정 (공유 불필요)
 local.properties
+
+# Android 서명 키 (절대 커밋 금지)
+*.keystore
+*.jks
+
+# Android Studio Profiler 캡처
+captures/
 
 # macOS
 .DS_Store
