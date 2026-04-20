@@ -105,7 +105,8 @@ plugins {
             │
 ┌───────────▼──────────────────────────────────────┐
 │                     data                         │
-│   Repository (Impl) · DataSource · DB · Network  │
+│  FaceDetectionRepositoryImpl · FaceMapper        │
+│  CameraX ImageAnalyzer · ML Kit FaceDetector     │
 └──────────────────────────────────────────────────┘
 ```
 
@@ -145,7 +146,7 @@ git clone https://github.com/dantariun/morphview.git
 | Version Catalog 중앙화 | ✅ 완료 |
 | app 기본 Compose + Material 3 테마 | ✅ 완료 |
 | domain — Entity · Repository Interface · UseCase | ✅ 완료 |
-| data — CameraX + ML Kit Repository 구현 | 🔲 예정 |
+| data — FaceDetectionRepositoryImpl · FaceMapper | ✅ 완료 |
 | presentation — CameraX 프리뷰 · 얼굴 윤곽 오버레이 | 🔲 예정 |
 | presentation — 눈/입/방향 상태 UI 표시 | 🔲 예정 |
 | Hilt 의존성 주입 | 🔲 예정 |
@@ -162,8 +163,9 @@ git clone https://github.com/dantariun/morphview.git
 | [3편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-3)                                                                                                                                                | build-logic 분석 · Convention Plugin 필요성 |
 | [4편](https://velog.io/@pepperkim/Android-clean-architecture-Multi-Module-framework-%EC%A0%9C%EC%9E%91%EA%B8%B0-4)                                                                                                                                                | build-logic 모듈 생성 · AGP / Kotlin 플러그인 연결 |
 | [5편](https://velog.io/@pepperkim/Android-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%A9%80%ED%8B%B0%EB%AA%A8%EB%93%88-%EC%A0%9C%EC%9E%91%EA%B8%B0-5%ED%8E%B8-Convention-Plugin-%EC%A7%81%EC%A0%91-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0) | Convention Plugin 구현 · 각 모듈 적용|
-| [6편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-6편-Convention-Plugin-끝까지-마무리하기) | Convention Plugin, 끝까지 마무리하기|
-| [7편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-7편-Domain-레이어-설계) | Domain 레이어 설계|
+| [6편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-6편-Convention-Plugin-끝까지-마무리하기)                                                                                                                                                                        | Convention Plugin, 끝까지 마무리하기|
+| [7편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-7편-Domain-레이어-설계)                                                                                                                                                                                      | Domain 레이어 설계|
+| [8편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-8편-Data-레이어-구현-ML-Kit-연동과-Repository-구현체)                                                                                                                                                              | Data 레이어 — ML Kit 연동 · FaceDetectionRepositoryImpl 구현|
 
 ---
 
