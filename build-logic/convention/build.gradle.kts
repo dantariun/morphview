@@ -24,5 +24,9 @@ gradlePlugin {
             id = "com.dantariun.buildlogic.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
+        register("androidHilt") {
+            id = "com.dantariun.buildlogic.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
     }
 }

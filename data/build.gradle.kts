@@ -1,5 +1,6 @@
 plugins {
     id("com.dantariun.buildlogic.library")
+    id("com.dantariun.buildlogic.hilt")
 }
 
 android {

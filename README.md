@@ -15,6 +15,7 @@ Android Clean Architecture + Multi-Module 학습 프로젝트
 | UI | Jetpack Compose + Material 3 |
 | Architecture | Clean Architecture + MVVM |
 | Build | Gradle Convention Plugins, Version Catalog |
+| DI | Hilt 2.51.1 + KSP 2.0.21-1.0.28 |
 | Camera | CameraX 1.3.4 |
 | Face Detection | Google ML Kit Face Detection 16.1.7 |
 | Async | Kotlin Coroutines + Flow 1.8.1 |
@@ -52,17 +53,19 @@ app ──▶ presentation ──▶ domain ◀── data
 
 ```
 build-logic/convention/src/main/kotlin/
-├── ProjectExtensions.kt                    # VersionCatalog 접근 · SDK 버전 상수
-├── AndroidApplicationConventionPlugin.kt   # :app 모듈 전용
-├── AndroidLibraryConventionPlugin.kt       # 일반 라이브러리 모듈
-└── AndroidLibraryComposeConventionPlugin.kt # Compose 포함 라이브러리 모듈
+├── ProjectExtensions.kt                     # VersionCatalog 접근 · SDK 버전 상수
+├── AndroidApplicationConventionPlugin.kt    # :app 모듈 전용
+├── AndroidLibraryConventionPlugin.kt        # 일반 라이브러리 모듈
+├── AndroidLibraryComposeConventionPlugin.kt # Compose 포함 라이브러리 모듈
+└── AndroidHiltConventionPlugin.kt           # Hilt DI 적용 모듈
 ```
 
 | Plugin ID | 대상 모듈 | 적용 내용 |
 |---|---|---|
-| `com.dantariun.buildlogic.application` | `:app` | compileSdk · minSdk · targetSdk · JVM 11 |
+| `com.dantariun.buildlogic.application` | `:app` | compileSdk · minSdk · targetSdk · JVM 11 · Compose |
 | `com.dantariun.buildlogic.library` | `:presentation` `:domain` `:data` | compileSdk · minSdk · JVM 11 · buildConfig 비활성화 |
 | `com.dantariun.buildlogic.library.compose` | Compose 사용 모듈 | library 설정 상속 + Compose 활성화 |
+| `com.dantariun.buildlogic.hilt` | `:app` `:data` | Hilt + KSP 플러그인 · 의존성 자동 추가 |
 
 **Convention Plugin 적용 전/후 비교**
 
@@ -89,7 +92,7 @@ plugins {
 ```
 ┌──────────────────────────────────────────────────┐
 │                      app                         │
-│          MainActivity · Theme · Navigation       │
+│  MorphViewApplication(@HiltAndroidApp) · MainActivity │
 └───────────────────────┬──────────────────────────┘
                         │
 ┌───────────────────────▼──────────────────────────┐
@@ -149,7 +152,7 @@ git clone https://github.com/dantariun/morphview.git
 | data — FaceDetectionRepositoryImpl · FaceMapper | ✅ 완료 |
 | presentation — CameraX 프리뷰 · 얼굴 윤곽 오버레이 | 🔲 예정 |
 | presentation — 눈/입/방향 상태 UI 표시 | 🔲 예정 |
-| Hilt 의존성 주입 | 🔲 예정 |
+| Hilt DI — AndroidHiltConventionPlugin · DataModule · @Inject | ✅ 완료 |
 | Navigation | 🔲 예정 |
 
 ---
@@ -166,6 +169,7 @@ git clone https://github.com/dantariun/morphview.git
 | [6편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-6편-Convention-Plugin-끝까지-마무리하기)                                                                                                                                                                        | Convention Plugin, 끝까지 마무리하기|
 | [7편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-7편-Domain-레이어-설계)                                                                                                                                                                                      | Domain 레이어 설계|
 | [8편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-8편-Data-레이어-구현-ML-Kit-연동과-Repository-구현체)                                                                                                                                                              | Data 레이어 — ML Kit 연동 · FaceDetectionRepositoryImpl 구현|
+| [9편](https://velog.io/@pepperkim/MorphView-제작기-9-Hilt-DI-도입-레이어를-연결하는-의존성-주입)                                                                                                                                                                                                                                                           | Hilt DI 도입 — 레이어 연결 · Convention Plugin 통합 (게시 예정) |
 
 ---
 

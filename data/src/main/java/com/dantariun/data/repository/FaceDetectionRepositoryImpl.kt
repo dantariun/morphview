@@ -12,8 +12,9 @@ import com.google.mlkit.vision.face.FaceDetectorOptions
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
-class FaceDetectionRepositoryImpl : FaceDetectionRepository {
+class FaceDetectionRepositoryImpl @Inject constructor() : FaceDetectionRepository {
 
     private val _detectedFaces = MutableStateFlow<List<DetectedFace>>(emptyList())
     override val detectedFaces: Flow<List<DetectedFace>> = _detectedFaces.asStateFlow()
