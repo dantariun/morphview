@@ -4,6 +4,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.dantariun.data.mapper.toDomain
 import com.dantariun.domain.model.DetectedFace
+import com.dantariun.domain.model.ImageSize
 import com.dantariun.domain.repository.FaceDetectionRepository
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
@@ -11,13 +12,19 @@ import com.google.mlkit.vision.face.FaceDetector
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class FaceDetectionRepositoryImpl @Inject constructor() : FaceDetectionRepository {
 
     private val _detectedFaces = MutableStateFlow<List<DetectedFace>>(emptyList())
     override val detectedFaces: Flow<List<DetectedFace>> = _detectedFaces.asStateFlow()
+
+    private val _imageSize = MutableStateFlow(ImageSize(640, 480))
+    override val imageSize: StateFlow<ImageSize> = _imageSize.asStateFlow()
 
     private val detector: FaceDetector by lazy {
         val options = FaceDetectorOptions.Builder()
@@ -31,6 +38,13 @@ class FaceDetectionRepositoryImpl @Inject constructor() : FaceDetectionRepositor
 
     // CameraX ImageAnalysis.Analyzer — presentation 레이어에서 CameraX에 등록
     val imageAnalyzer = ImageAnalysis.Analyzer { imageProxy ->
+        val rotated = imageProxy.imageInfo.rotationDegrees == 90 ||
+                imageProxy.imageInfo.rotationDegrees == 270
+        _imageSize.value = if (rotated) {
+            ImageSize(imageProxy.height, imageProxy.width)
+        } else {
+            ImageSize(imageProxy.width, imageProxy.height)
+        }
         processImage(imageProxy)
     }
 
