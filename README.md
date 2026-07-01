@@ -172,7 +172,8 @@ git clone https://github.com/dantariun/morphview.git
 | [7편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-7편-Domain-레이어-설계)                                                                                                                                                                                      | Domain 레이어 설계|
 | [8편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-8편-Data-레이어-구현-ML-Kit-연동과-Repository-구현체)                                                                                                                                                              | Data 레이어 — ML Kit 연동 · FaceDetectionRepositoryImpl 구현|
 | [9편](https://velog.io/@pepperkim/MorphView-제작기-9-Hilt-DI-도입-레이어를-연결하는-의존성-주입)                                                                                                                                                                                                                                                           | Hilt DI 도입 — 레이어 연결 · Convention Plugin 통합 |
-| [10편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-10-Presentation-레이어-CameraX-프리뷰-얼굴-윤곽-오버레이-상태-UI) | Presentation 레이어 — CameraX 프리뷰 · 얼굴 윤곽 오버레이 · 상태 UI (게시 예정) |
+| [10편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-10-Presentation-레이어-CameraX-프리뷰-얼굴-윤곽-오버레이-상태-UI) | Presentation 레이어 — CameraX 프리뷰 · 얼굴 윤곽 오버레이 · 상태 UI |
+| [11편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-11Navigation-화면-간-이동-구조-잡기) | Navigation — HomeScreen · NavGraph · 화면 간 이동 구조 |
 
 ---
 
