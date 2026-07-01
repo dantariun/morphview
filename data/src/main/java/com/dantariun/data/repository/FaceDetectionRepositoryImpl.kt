@@ -1,5 +1,6 @@
 package com.dantariun.data.repository
 
+import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.dantariun.data.mapper.toDomain
@@ -48,6 +49,7 @@ class FaceDetectionRepositoryImpl @Inject constructor() : FaceDetectionRepositor
         processImage(imageProxy)
     }
 
+    @OptIn(ExperimentalGetImage::class)
     private fun processImage(imageProxy: ImageProxy) {
         val mediaImage = imageProxy.image ?: run {
             imageProxy.close()

@@ -8,6 +8,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun FaceDetectionScreen(
+    onNavigateBack: () -> Unit = {},
     viewModel: FaceDetectionViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -58,20 +64,17 @@ fun FaceDetectionScreen(
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // 카메라 프리뷰
         CameraPreview(
             analyzer = viewModel.imageAnalyzer,
             modifier = Modifier.fillMaxSize()
         )
 
-        // 얼굴 윤곽 오버레이
         FaceOverlayCanvas(
             faces = detectedFaces,
             imageSize = imageSize,
             modifier = Modifier.fillMaxSize()
         )
 
-        // 얼굴 상태 패널
         FaceStatePanel(
             face = detectedFaces.firstOrNull(),
             modifier = Modifier
@@ -79,5 +82,19 @@ fun FaceDetectionScreen(
                 .fillMaxWidth()
                 .padding(16.dp)
         )
+
+        IconButton(
+            onClick = onNavigateBack,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .statusBarsPadding()
+                .padding(8.dp)
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "뒤로가기",
+                tint = Color.White
+            )
+        }
     }
 }
