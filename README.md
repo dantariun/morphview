@@ -155,7 +155,8 @@ git clone https://github.com/dantariun/morphview.git
 | presentation — CameraX 프리뷰 · 얼굴 윤곽 오버레이 | ✅ 완료 |
 | presentation — 눈/입/방향 상태 UI 표시 | ✅ 완료 |
 | Hilt DI — AndroidHiltConventionPlugin · DataModule · @Inject | ✅ 완료 |
-| Navigation | 🔲 예정 |
+| Navigation — HomeScreen · MorphViewNavGraph · 화면 간 이동 | ✅ 완료 |
+| Domain 단위 테스트 — EyeState · HeadDirection · UseCase | ✅ 완료 |
 
 ---
 
@@ -174,6 +175,7 @@ git clone https://github.com/dantariun/morphview.git
 | [9편](https://velog.io/@pepperkim/MorphView-제작기-9-Hilt-DI-도입-레이어를-연결하는-의존성-주입)                                                                                                                                                                                                                                                           | Hilt DI 도입 — 레이어 연결 · Convention Plugin 통합 |
 | [10편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-10-Presentation-레이어-CameraX-프리뷰-얼굴-윤곽-오버레이-상태-UI) | Presentation 레이어 — CameraX 프리뷰 · 얼굴 윤곽 오버레이 · 상태 UI |
 | [11편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-11Navigation-화면-간-이동-구조-잡기) | Navigation — HomeScreen · NavGraph · 화면 간 이동 구조 |
+| [12편](https://velog.io/@pepperkim/Android-클린-아키텍처-멀티모듈-제작기-12Testing-Domain-레이어를-테스트한다는-것) | Testing — EyeState · HeadDirection · ObserveFaceDetectionUseCase 단위 테스트 |
 
 ---
 
